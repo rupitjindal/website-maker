@@ -1,0 +1,13 @@
+{
+    "elements":[
+        "div",
+        "span",
+        "p",
+        "a",
+        "img",
+        "button",
+        "input",
+        "form",
+        "h1"
+    ]
+}
