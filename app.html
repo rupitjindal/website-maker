@@ -24,16 +24,43 @@
   background-color: #2196F3;
   color: #fff;
 }
+.msgBox {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        width: 242px;
+        background: #eee;
+      }
+
+      .msgBox p {
+        line-height: 1.5;
+        padding: 10px 20px;
+        color: #333;
+        padding-left: 82px;
+        background-position: 25px center;
+        background-repeat: no-repeat;
+      }
+
+      .msgBox button {
+        background: none;
+        border: none;
+        position: absolute;
+        top: 0;
+        right: 0;
+        font-size: 1.1rem;
+        color: #aaa;
+      }
 </style>
 <body>
     <button type="button" name="button" id="generate_div">Make a div</button>
     <!-- Draggable DIV -->
 <div id="mydiv">
-  <!-- Include a header DIV with the same name as the draggable DIV, followed by "header" -->
   <div id="mydivheader">Click here to move</div>
   <p>Move</p>
   <p>this</p>
   <p>DIV</p>
+
 </div>
     <script src="app.js" type="module"></script>
 </body>

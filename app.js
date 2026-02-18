@@ -1,6 +1,4 @@
 // Make the DIV element draggable:
-dragElement(document.getElementById("mydiv"));
-
 function dragElement(elmnt) {
   var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
   if (document.getElementById(elmnt.id + "header")) {
@@ -22,7 +20,6 @@ function dragElement(elmnt) {
   }
 
   function elementDrag(e) {
-   
     e.preventDefault();
     // calculate the new cursor position:
     pos1 = pos3 - e.clientX;
@@ -37,6 +34,46 @@ function dragElement(elmnt) {
   function closeDragElement() {
     // stop moving when mouse button is released:
     document.onmousemove = null;
-    console.log(pos1, pos2, pos3, pos4);
+    console.log(pos1,pos2,pos3,pos4);
   }
 }
+
+function generateElement(){
+  try{
+   const body = document.body;
+
+const panel = document.createElement("div");
+panel.setAttribute("class", "msgBox");
+panel.setAttribute("id","divId");
+panel.style.overflow = "hidden";
+panel.style.resize = "both";
+panel.addEventListener("click",dragElement(panel));
+body.appendChild(panel);
+const header = document.createElement("div");
+header.setAttribute("class", "header");
+header.setAttribute("id","divIdheader");
+const headerText = document.createElement("p");
+headerText.textContent = "Header";
+header.appendChild(headerText);
+header.style.cursor = "move";
+panel.appendChild(header);
+const msg = document.createElement("p");
+msg.textContent = "Element";
+panel.appendChild(msg);
+
+const closeBtn = document.createElement("button");
+closeBtn.textContent = "x";
+panel.appendChild(closeBtn);
+
+closeBtn.addEventListener("click", () => body.removeChild(panel));
+
+  }
+  catch(error){
+console.log(error);
+  }
+}
+
+const generate = document.querySelector("button");
+generate.addEventListener("click",()=>generateElement());
+
+
