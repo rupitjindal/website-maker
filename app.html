@@ -11,27 +11,10 @@
     The application is built using HTML, CSS, and JavaScript.">
     <meta name="keywords" content="web development, web design, drag and drop, user-friendly interface, HTML, CSS, JavaScript">
     <meta name="author" content="Rupit Jindal">
+    <link rel="stylesheet" href="app.css">
     <title>Document</title>
 </head>
 <style>
-    #mydiv {
-  position: absolute;
-  z-index: 9;
-  background-color: #f1f1f1;
-  border: 1px solid #d3d3d3;
-  text-align: center;
-  resize: both;
-  overflow: hidden;
-  
-}
-
-#mydivheader {
-  padding: 10px;
-  cursor: move;
-  z-index: 10;
-  background-color: #2196F3;
-  color: #fff;
-}
 .msgBox {
         position: absolute;
         top: 50%;
@@ -61,15 +44,39 @@
       }
 </style>
 <body>
-    <button type="button" name="button" id="generate_div">Make a div</button>
-    <!-- Draggable DIV -->
-<div id="mydiv">
-  <div id="mydivheader">Click here to move</div>
-  <p>Move</p>
-  <p>this</p>
-  <p>DIV</p>
-
-</div>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="#">Workshop</a></li>
+        <li><a href="#">Draw</a></li>
+        <li><a href="#">resume builder</a></li>
+      </ul>
+    </nav>
+</header>
+<main>
+  <article>
+   
+  </article>
+  <aside>
+    <ul>
+      <li>
+        <input type="text" name="text" id="text_input" placeholder="Enter text">
+        </li>
+        <li>
+        <input type="color" name="color" id="color_input">
+        </li>
+        <li>
+        <input type="number" name="font_size" id="font_size_input" placeholder="Font size (px)">
+        </li>
+        <li>
+        <button type="button" name="button" id="generate_div">Make a div</button>
+        </li>
+    </ul>
+  </aside>
+</main>
     <script src="app.js" type="module"></script>
 </body>
+<footer>
+  <p>Copyright rupitjindalgithub.io</p>
+</footer>
 </html>
