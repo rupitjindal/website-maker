@@ -1,71 +1,32 @@
-// Make the DIV element draggable:
-function dragElement(elmnt) {
-  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-  if (document.getElementById(elmnt.id + "header")) {
-    // if present, the header is where you move the DIV from:
-    document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
-  } else {
-    // otherwise, move the DIV from anywhere inside the DIV:
-    elmnt.onmousedown = dragMouseDown;
-  }
+const workshop = document.getElementById("workshop");
+workshop.addEventListener("drop",workshopDrop);
+workshop.addEventListener("dragover",(e)=>e.preventDefault());
 
-  function dragMouseDown(e) {
-    e.preventDefault();
-    // get the mouse cursor position at startup:
-    pos3 = e.clientX;
-    pos4 = e.clientY;
-    document.onmouseup = closeDragElement;
-    // call a function whenever the cursor moves:
-    document.onmousemove = elementDrag;
-  }
+window.addEventListener("drop",(e)=>{
+  e.preventDefault();}
+);
+window.addEventListener("dragover",(e)=>{e.preventDefault();}
+);
 
-  function elementDrag(e) {
-    e.preventDefault();
-    // calculate the new cursor position:
-    pos1 = pos3 - e.clientX;
-    pos2 = pos4 - e.clientY;
-    pos3 = e.clientX;
-    pos4 = e.clientY;
-    // set the element's new position:
-    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
-    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
-  }
-
-  function closeDragElement() {
-    // stop moving when mouse button is released:
-    document.onmousemove = null;
-    console.log(pos1,pos2,pos3,pos4);
-  }
-}
-
+//creating element
 function generateElement(){
   try{
-   const body = document.body;
-
+const article = document.getElementById("workshop");
 const panel = document.createElement("div");
+panel.setAttribute("draggable", "true");
 panel.setAttribute("class", "msgBox");
-panel.setAttribute("id","divId");
-panel.style.overflow = "hidden";
-panel.style.resize = "both";
-panel.addEventListener("click",dragElement(panel));
-body.appendChild(panel);
-const header = document.createElement("div");
-header.setAttribute("class", "header");
-header.setAttribute("id","divIdheader");
-const headerText = document.createElement("p");
-headerText.textContent = "Header";
-header.appendChild(headerText);
-header.style.cursor = "move";
-panel.appendChild(header);
-const msg = document.createElement("p");
-msg.textContent = "Element";
-panel.appendChild(msg);
+article.appendChild(panel)
 
+//adding drag event listener to element
+panel.addEventListener("dragstart", dragElement);
+panel.addEventListener("dragend", (e) => {
+  e.target.removeAttribute("id");
+});
 const closeBtn = document.createElement("button");
 closeBtn.textContent = "x";
 panel.appendChild(closeBtn);
 
-closeBtn.addEventListener("click", () => body.removeChild(panel));
+closeBtn.addEventListener("click", () => article.removeChild(panel));
 
   }
   catch(error){
@@ -77,3 +38,25 @@ const generate = document.querySelector("button");
 generate.addEventListener("click",()=>generateElement());
 
 
+function workshopDrop(e){
+  try{
+  e.preventDefault();
+  const element = document.getElementById("dragged");
+  const x = e.clientX;
+  const y = e.clientY;
+  element.style.left = x + "px";
+  element.style.top = y + "px";
+  workshop.appendChild(element);
+}catch(error){
+  console.log(`Drop element: ${error}`);
+};
+}
+
+function dragElement(e){
+  try{
+  e.target.setAttribute("id", "dragged");
+  e.dropEffect = "move";
+  }catch(error){
+    console.log(`Drag element: ${error}`);
+  }
+}
